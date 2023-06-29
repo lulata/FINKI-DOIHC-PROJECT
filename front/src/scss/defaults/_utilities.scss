@@ -1,0 +1,257 @@
+// BUTTON
+.button {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  // height: 36px;
+  gap: 10px;
+  border: 1px solid $backgroundColor;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  color: $backgroundColor;
+  outline: none;
+  background-color: transparent;
+  z-index: 2;
+  transition: color 0.2s ease-in-out;
+  flex-shrink: 0;
+  width: fit-content;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $backgroundColor;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.2s ease-in-out;
+  }
+  &:hover {
+    cursor: pointer;
+    color: $whiteColor;
+    &::before {
+      border: 1px solid $backgroundColor;
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
+  &.small-button {
+    padding: 5px 10px;
+    height: 22px;
+    font-size: 12px;
+  }
+
+  &.is-invalid {
+    border: 1px solid $errorColor;
+    color: $errorColor;
+    &::before {
+      background-color: $errorColor;
+    }
+    &:hover {
+      color: $whiteColor;
+      &::before {
+        border: 1px solid $errorColor;
+      }
+    }
+  }
+  &.success {
+    color: $successColor;
+    border: 1px solid $successColor;
+    &::before {
+      background-color: $successColor;
+    }
+    &:hover {
+      color: $whiteColor;
+      &::before {
+        border: 1px solid $successColor;
+      }
+    }
+  }
+  &.primary {
+    color: $primaryColor;
+    border: 1px solid $primaryColor;
+    &::before {
+      background-color: $primaryColor;
+    }
+    &:hover {
+      color: $whiteColor;
+      &::before {
+        border: 1px solid $primaryColor;
+      }
+    }
+  }
+
+  &.invert {
+    color: $whiteColor;
+    border: 1px solid $whiteColor;
+    &::before {
+      background-color: $whiteColor;
+    }
+    &:hover {
+      color: $backgroundColor;
+      &::before {
+        border: 1px solid $whiteColor;
+      }
+    }
+  }
+  &.hover {
+    color: $hoverColor;
+    border: 1px solid $hoverColor;
+    &::before {
+      background-color: $hoverColor;
+    }
+    &:hover {
+      color: $whiteColor;
+      &::before {
+        border: 1px solid $hoverColor;
+      }
+    }
+  }
+}
+
+.center-text {
+  text-align: center;
+}
+
+.page-title {
+  display: flex;
+  padding: 40px 80px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border-bottom: 1px solid $greyColor;
+}
+
+.page-footer-title {
+  display: flex;
+  padding: 40px 80px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border-bottom: 1px solid $greyColor;
+  border-top: 1px solid $greyColor;
+}
+
+.page-button-footer {
+  display: flex;
+  padding: 40px 80px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  &.center {
+    justify-content: center;
+  }
+}
+
+// Checkbox
+.checkbox {
+  display: flex;
+  align-items: center;
+  width: auto;
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    left: -99999px;
+  }
+
+  label {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    column-gap: 8px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  input[type="checkbox"] + label::before {
+    content: "";
+    display: inline-flex;
+    width: 18px;
+    height: 18px;
+    background: url("@/assets/icons/checkboxIcons.svg") 0 0;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+    margin-top: -1px;
+  }
+
+  input[type="checkbox"]:checked + label::before {
+    background: url("@/assets/icons/checkboxIcons.svg") 0 -18px;
+    background-repeat: no-repeat;
+  }
+  input[type="checkbox"]:disabled + label::before,
+  input[type="checkbox"]:disabled + label {
+    opacity: 0.5;
+  }
+
+  input[type="checkbox"]:checked:disabled + label::before {
+    background: url("@/assets/icons/checkboxIcons.svg") 0 -36px;
+    background-repeat: no-repeat;
+  }
+  &.disabled-checkbox {
+    opacity: 0.75;
+    cursor: not-allowed;
+  }
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+    &.disabled-checkbox {
+      opacity: 0.75;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.car-wrapper {
+  display: flex;
+  padding: 40px 80px;
+  gap: 40px;
+  flex-wrap: wrap;
+  width: 100%;
+
+  &-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+    border: 1px solid $greyColor;
+    max-width: 320px;
+    width: 100%;
+    height: fit-content;
+    img {
+      height: 220px;
+      object-fit: cover;
+      width: 100%;
+      border-radius: 16px 16px 0 0;
+    }
+    &-info {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+      gap: 20px;
+      width: 100%;
+
+      &-box {
+        width: calc(100% / 2 - 10px);
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .button {
+        width: 100%;
+      }
+    }
+  }
+}
